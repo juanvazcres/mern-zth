@@ -3,12 +3,12 @@ import User from '../models/User';
 
 const router = Router();
 
-router.get('/', async (_req, res) => {
+router.get('/', async (_req: any, res: any) => {
     const users = await User.find().select('-password'); // no password in response
     res.json(users);
 });
 
-router.post('/', async (req, res) => {
+router.post('/', async (req: any, res: any) => {
     const {body: { name, email, password }} = req;
     if (!name || !email || !password) {
         return res.status(400).json({ message: 'All fields required' });
